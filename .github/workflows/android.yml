@@ -28,6 +28,21 @@ jobs:
       - name: Build APK
         run: gradle assembleDebug
 
+      - name: Diagnose APK
+        run: |
+          APK="app/build/outputs/apk/debug/app-debug.apk"
+
+          echo "=== APK FILE ==="
+          ls -lh "$APK"
+
+          echo "=== APK PACKAGE INFO ==="
+          AAPT=$(find "$ANDROID_HOME/build-tools" -name aapt -type f | sort -V | tail -1)
+          "$AAPT" dump badging "$APK" | head -20
+
+          echo "=== APK SIGNING ==="
+          APKSIGNER=$(find "$ANDROID_HOME/build-tools" -name apksigner -type f | sort -V | tail -1)
+          "$APKSIGNER" verify --verbose --print-certs "$APK"
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
