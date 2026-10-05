@@ -1,3 +1,18 @@
+Kairo-Android-Agent
+Repository navigation
+Code
+Issues
+Pull requests
+Kairo-Android-Agent/.github/workflows
+/android.yml
+lolzinitiz
+lolzinitiz
+now
+47 lines (35 loc) · 1.01 KB
+
+Code
+
+Blame
 name: Android CI
 
 on:
@@ -45,3 +60,4 @@ jobs:
         with:
           name: Kairo-debug-apk
           path: app/build/outputs/apk/debug/app-debug.apk
+          
